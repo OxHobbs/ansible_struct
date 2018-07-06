@@ -1,0 +1,7 @@
+---
+- name: start phonebook
+  systemd:
+    state: started
+    daemon_reload: yes
+    name: phone-book
+    enabled: yes

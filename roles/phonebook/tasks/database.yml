@@ -1,0 +1,19 @@
+---
+- name: create phonebook database
+  mysql_db:
+    name: phonebook
+    state: present
+    login_host: "{{ mysql_host }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+
+- name: create app for phonebook database
+  mysql_user:
+    name: app
+    password: "{{ mysql_app_password }}"
+    priv: 'phonebook.*:ALL'
+    host: "%"
+    state: present
+    login_host: "{{ mysql_host }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"

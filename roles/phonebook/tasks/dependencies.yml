@@ -1,0 +1,30 @@
+---
+- name: include_secrets
+  include_vars: secrets.yml
+
+- name: install epel repository
+  package:
+    name: epel-release
+    state: present
+
+- name: install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - git
+  - python-pip
+  - gcc
+  - python-devel
+  - mysql-devel
+
+- name: install python libraries
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items: 
+  - flask
+  - flask-sqlalchemy
+  - flask-migrate
+  - uwsgi
+  - MySQL-python

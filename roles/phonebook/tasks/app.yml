@@ -1,0 +1,16 @@
+---
+- name: get the app code
+  git:
+    repo: https://github.com/ansible-cookbook/phonebook-mysql.git
+    dest: /opt/phone-book
+    force: yes
+
+- name: upload systemd unit file
+  copy:
+    src: phone-book.service
+    dest: /etc/systemd/system/phone-book.service
+
+- name: upload app config file
+  template:
+    src: config.py
+    dest: /opt/phone-book/config.py
