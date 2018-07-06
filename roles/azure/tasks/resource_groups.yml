@@ -1,0 +1,7 @@
+---
+- name: Create RG
+  azure_rm_resourcegroup:
+    name: phonebookApp
+    location: "{{ primary_azure_region }}"
+  tags:
+    - recipe4

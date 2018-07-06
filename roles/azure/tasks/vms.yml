@@ -1,0 +1,22 @@
+---
+- name: create vm using nic02
+  azure_rm_virtualmachine:
+    resource_group: phonebookApp
+    state: present
+    name: phonebookVM-FE
+    location: "{{ primary_azure_region }}"
+    vm_size: Standard_D4
+    storage_account: examplestorage01aljdl
+    admin_username: cookbook
+    admin_password: "{{ admin_password }}"
+    ssh_public_keys:
+    - path: /home/cookbook/.ssh/authorized_keys
+      key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCoz5cnrDJSVGVtRR/I3fUeewDg9yTTcF9yDHyzooHO79ERY0a2Ii/ffePpGYfdWr55PoEJG9GIcXjsdyfTHgKJHD+BBVKRjb6kMGGhmCRjH2MSy9Bsom+zGr+YEAM1THF+GMCddq5jcOHBd1+8/zcZu+coCStDVQDrNRbZQlXnTxXYlV2nzF6mF/uyNj62OMNBb39qPdnJQ+RVYJrViQLRrJYL+qaePHdMTD2sljgpco3skCLT1gJ49z8u/o5Is3xDa/CoOgBcYY0nsXp1IU6b3e6whyFPdcuLwqDw+v5bIdD2neGTQUNP0i9ilwofNlN4QBgY3yVlEzilKE9vlmvUcxdh5PSHtszuklXhJuOo+pULq0hsrfPk04ywEOCbjDivm0v8hjthVamHYL50jl4nmjXZ/SCemZPB5KDfgWyGSFc1m1gvxin67um0g1cUa5/xk6sNwxnxDtiFOVhgUP0w1cSe5lnbXWTf5O/b3AX2UUExMzln1QQHIF36H1gH9c2SaEQ8cl5EKMPmOxDQPULFaCHq4gFS1QdXaKiKgfGwoB+eJo8fa8oRi9oU6pM30vNYoC7wlKEVNBDtsWADponQaguN4XJT0qLjJ0jn+M4Nn6fURoyJLD2/kbuK07JgyN6rBiHFgnvF+NmVfdnXfuR/yOlOkH9ACQxS7aPtX9pSiw=="
+    image:
+      offer: RHEL
+      publisher: RedHat
+      sku: '7.4'
+      version: latest
+    network_interfaces: nic02
+  tags:
+  - recipe04

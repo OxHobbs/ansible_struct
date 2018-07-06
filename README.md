@@ -11,6 +11,9 @@ This is a sample repository built from open source sample code to demonstrate a 
 
 ## ChangeLog
 
+#### v0.3.0
+- Refactored azure role into modular format.
+
 #### v0.2.0
 - Refactored phonebook role into a more modular format.
 

@@ -1,0 +1,30 @@
+---
+- name: Create storage account
+  azure_rm_storageaccount:
+    resource_group: phonebookApp
+    name: examplestorage01aljdl
+    type: Standard_LRS
+    location: "{{ primary_azure_region }}"
+  tags:
+    - recipe4
+
+- name: Create storage container
+  azure_rm_storageblob:
+     resource_group: phonebookApp
+     storage_account_name: examplestorage01aljdl
+     container: cookbook
+     state: present
+  tags:
+    - recipe6
+
+- name: Upload a file to existing container
+  azure_rm_storageblob:
+     resource_group: phonebookApp
+     storage_account_name: examplestorage01aljdl
+     container: cookbook
+     blob: myfile.png
+     src: /tmp/myfile.png
+     public_access: blob
+     content_type: 'application/image'
+  tags:
+    - recipe6
